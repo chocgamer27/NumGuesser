@@ -1,41 +1,38 @@
 <body>
 
     <button id="Startbutton"; onclick=" start()"; style="position: absolute; width: 15%; height: 15%;"></button>
-    <h1 id="DebugNum" style="position:absolute; font-size: xx-large; position: absolute; width: 15%; height: 15%; top: 15%;"></h1>
+    <h1 id="DebugNum" style="position:absolute; font-size: xx-large; position: absolute; width: 15%; height: 15%; top: 30%;"></h1>
     <textarea id="guessinput" style="position:absolute; font-family: cursive;font-size: xx-large;height: 30%; width: 30%; top: 10%; right: 0%;""></textarea>
     <button id="submitguess" style="position:absolute; font-family: cursive;font-size: xx-large;height: 30%; width: 30%; top: 10%; right: 50%;" onclick=" guess()"></button>
 
 </body>
 
 <script>
-    let num = 0
+    let num = 0;
     
     function start(){
         
         function rand(){
-            num = Math.random(10)*10000
-        }
-        rand()
-        if (num=="-infinity"){
-            rand()
-        }
+            num = Math.floor(Math.random(1)*10000)
+        };
+        rand();
 
-        document.getElementById("DebugNum").textContent = num
+        document.getElementById("DebugNum").textContent = num;
 
     }
 
     function guess(){
-        guessval = Number(document.getElementById("guessinput").textContent)
+        guessval = Number(document.getElementById("guessinput").value);
 
         if (guessval>num){
             console.log("too high")
-        }
+        };
         if (guessval<num){
             console.log("too low")
-        }
+        };
         if (guessval==num){
             console.log("winna")
-        }
+        };
     }
         
 </script>
