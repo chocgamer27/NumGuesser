@@ -25,7 +25,7 @@
     }
 
     function guess(){
-        let guessval = document.getElementById("guessinput").textContent
+        let guessval = Number(document.getElementById("guessinput").textContent)
         if (guessval>num){
             console.log("too high")
         }
