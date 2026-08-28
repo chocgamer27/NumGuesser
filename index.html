@@ -10,7 +10,10 @@
     font-size: xx-large;
     border-radius: 100px;
     font-family: cursive;">Click to start!</button>
-    <h1 id="DebugNum" style="position:absolute; font-size: xx-large; position: absolute; width: 15%; height: 15%; top: 30%;"></h1>
+    <h1 id="DebugNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 23%;"; hidden="true"></h1>
+    <h1 id="GuessesNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 19%;"; hidden="true"></h1>
+    <h1 id="TotalGuessesNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 15%;"; hidden="true"></h1>
+    <h1 id="WinsNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 11%;"; hidden="true"></h1>
     <textarea id="GuessInput" style="position:absolute;
     font-family: cursive;
     font-size: 700%;
@@ -27,43 +30,88 @@
     border-radius: 100px;"; 
     placeholder="Enter Number";
     hidden="true"></textarea>
+    <h1 id="Status"
+    style="
+    position: absolute;
+    top: 60%;
+    left: 25%;
+    font-size: 450%;
+    "></h1>
+
+    <button id="ShowAns"; style="position:absolute; font-size: x-large; position: absolute; width: 8%; height: 12%; bottom: 1%;" onclick=" Ans()">Number & stats</button>
 
 </body>
 
 <script>
     let num = 0;
     let running = 0
+    let wins = 0
+    let totalguesses = 0
+    let guesses = 0
+
+    function Ans(){
+        if (document.getElementById("DebugNum").hidden == false){
+            document.getElementById("GuessesNum").hidden = true;
+            document.getElementById("TotalGuessesNum").hidden = true;
+            document.getElementById("WinsNum").hidden = true;
+        }
+        else {
+            document.getElementById("DebugNum").hidden = false;
+            document.getElementById("GuessesNum").hidden = false;
+            document.getElementById("TotalGuessesNum").hidden = false;
+            document.getElementById("WinsNum").hidden = false;
+        };
+        if (document.getElementById("DebugNum").textContent == ""){
+            document.getElementById("DebugNum").textContent = "Try starting a game for more stats!"
+        };
+        if (document.getElementById("GuessesNum").textContent == ""){
+            document.getElementById("GuessesNum").textContent = "Try guessing for more stats!"
+        };
+        if (document.getElementById("WinsNum").textContent == ""){
+            document.getElementById("WinsNum").textContent = "Try Getting a number correct for more stats!"
+        };
+    }
 
     function rand(){
-        num = Math.floor(Math.random(1)*10000)
+        num = Math.floor(Math.random(1)*1000000)
     };
 
     function start(){
         
         if (!running){
+            guesses = 0
             running = 1
             rand();
+            document.getElementById("GuessesNum").textContent = "Guesses: 0";
             document.getElementById("DebugNum").textContent = num;
             document.getElementById("StartButton").textContent = "Submit Guess!"
-            document.getElementById("GuessInput").style
+            document.getElementById("Status").textContent = "Hmm watcha gonna guess?!"
+            document.getElementById("GuessInput").hidden=false
         }
         else guess()
 
 
     }
     function guess(){
+        totalguesses ++
+        guesses ++
         guessval = Number(document.getElementById("GuessInput").value);
+        document.getElementById("GuessesNum").textContent = "Guesses: "+ guesses;
+        document.getElementById("TotalGuessesNum").textContent = "Total Guesses: " + totalguesses;
 
         if (guessval>num){
-            console.log("too high")
+            document.getElementById("Status").textContent = guessval + " Was Too High"
         };
         if (guessval<num){
-            console.log("too low")
+            document.getElementById("Status").textContent = guessval + " Was Too Low"
         };
         if (guessval==num){
-            console.log("winna")
+            wins ++
+            document.getElementById("WinsNum").textContent = "Wins: " + wins;
+            document.getElementById("Status").textContent = guessval + " Was Perfect! but it added " + guesses + " to your new total of " + totalguesses + "!!"
             document.getElementById("StartButton").textContent = "Click to start again!"
             document.getElementById("GuessInput").hidden=true
+            document.getElementById("GuessInput").value = ""
             running = 0
         };
     }
