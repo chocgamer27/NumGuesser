@@ -2,6 +2,8 @@
 
     <button id="Startbutton"; onclick=" start()"; style="position: absolute; width: 15%; height: 15%;"></button>
     <h1 id="DebugNum" style="font-size: xx-large; position: absolute; width: 15%; height: 15%; top: 15%;"></h1>
+    <textarea id="guessinput" style="font-family: cursive;font-size: xx-large;height: 30%; width: 30%; top: 10%; right: 0%;""></textarea>
+    <button id="submitguess" style="font-family: cursive;font-size: xx-large;height: 30%; width: 30%; top: 10%; right: 50%;" onclick=" guess()"></button>
 
 </body>
 
@@ -9,11 +11,27 @@
     let num = 0
     
     function start(){
-
-        num = 0-Math.random(10)*Math.random(10)/(Math.random(10)^(0-Math.random(10))*(10*Math.random(10)))/Math.random(10)*100
         
+        function rand(){
+            num = 0-Math.random(10)*Math.random(10)/(Math.random(10)^(0-Math.random(10))*(10*Math.random(10)))/Math.random(10)*100
+        }
+        rand()
+        if (num=="-infinity"){
+            rand()
+        }
+
         document.getElementById("DebugNum").textContent = num
 
+    }
+
+    function guess(){
+        let guessval = document.getElementById("guessinput").textContent
+        if (guessval>num){
+            console.log("too high")
+        }
+        else if (guessval<num){
+            console.log("too low")
+        }
     }
         
 </script>
