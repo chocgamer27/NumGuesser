@@ -1,7 +1,18 @@
 <body>
 
+    <button id="Startbutton"; onclick=" start()"; style=""></button>
+    <p id="DebugNum"></p>
     <script>
-        console.log(Math.random(10))
+        let num = 0
+        
+        function start(){
+
+            num = console.log(Math.random())
+            
+            document.getElementById("DebugNum").textContent = num
+
+        }
+        
     </script>
 
 </body>
