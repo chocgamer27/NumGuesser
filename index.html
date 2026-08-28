@@ -25,12 +25,16 @@
     }
 
     function guess(){
-        let guessval = Number(document.getElementById("guessinput").textContent)
+        guessval = Number(document.getElementById("guessinput").textContent)
+
         if (guessval>num){
             console.log("too high")
         }
         else if (guessval<num){
             console.log("too low")
+        }
+        else if (guessval==num){
+            console.log("winna")
         }
     }
         
