@@ -1,6 +1,6 @@
-<body>
+<body style="background-color: darkgrey;">
 
-
+    <a href="index.html" style="position: fixed; z-index: 99999999; bottom: 5%; right: 5%; width: 13%; height: auto; font-size: 200%; color: rgb(240, 174, 211); background-color: rgba(134, 79, 185, 0.85); border-radius: 10px; align-content: center; text-align: center;">Go Back To Guessing Numbers!!!</a>
 
 </body>
 
@@ -34,7 +34,7 @@
             if (i != 0){
                 if (data[i].score !== data[i-1].score){
                    NewElement = document.createElement("h2")
-                    NewElement.textContent = (i+1-buffer) + ". " + data[i].name + " - " + data[i].score;
+                    NewElement.textContent = `${i+1-buffer}. ${data[i].name} - ${data[i].score} guesses!`;
                     NewElement.style = `position: absolute;
                     left: auto; 
                     top: ${i*9}%; 
@@ -52,7 +52,7 @@
                 } else {
                     buffer = buffer + 1
                     NewElement = document.createElement("h2")
-                    NewElement.textContent = (i+1-buffer) + ". " + data[i].name + " - " + data[i].score;
+                    NewElement.textContent = `${i+1-buffer}. ${data[i].name} - ${data[i].score} guesses!`;
                     NewElement.style = `position: absolute;
                     left: auto; 
                     top: ${i*9}%; 
@@ -70,7 +70,7 @@
                 }
             } else {
                 NewElement = document.createElement("h2")
-                NewElement.textContent = (i+1-buffer) + ". " + data[i].name + " - " + data[i].score;
+                NewElement.textContent = `${i+1-buffer}. ${data[i].name} - ${data[i].score} guesses!`;
                 NewElement.style = `position: absolute;
                 left: auto; 
                 top: ${i*9}%; 
