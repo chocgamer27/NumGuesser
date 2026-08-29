@@ -23,7 +23,7 @@
     
     <h1 id="AverageNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 7%; color: darkgrey;"; hidden="true"></h1>
     
-    <h1 id="best" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 3%; color: darkgrey;"; hidden="true"></h1>
+    <h1 id="Best" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 3%; color: darkgrey;"; hidden="true"></h1>
     
 
     <textarea id="GuessInput" style="position:absolute;
@@ -125,19 +125,21 @@
     }
 
     function Ans(){
-        if (document.getElementById("DebugNum").hidden == false){
-            document.getElementById("DebugNum").hidden = true;
+        if (document.getElementById("GuessesNum").hidden == false){
+            //document.getElementById("DebugNum").hidden = true;
             document.getElementById("GuessesNum").hidden = true;
             document.getElementById("TotalGuessesNum").hidden = true;
             document.getElementById("WinsNum").hidden = true;
             document.getElementById("AverageNum").hidden = true;
+            document.getElementById("Best").hidden = true;
         }
         else {
-            document.getElementById("DebugNum").hidden = false;
+            //document.getElementById("DebugNum").hidden = false;
             document.getElementById("GuessesNum").hidden = false;
             document.getElementById("TotalGuessesNum").hidden = false;
             document.getElementById("WinsNum").hidden = false;
             document.getElementById("AverageNum").hidden = false;
+            document.getElementById("Best").hidden = false;
         };
         if (document.getElementById("DebugNum").textContent == ""){
             document.getElementById("DebugNum").textContent = "Try starting a game for more stats!"
@@ -151,7 +153,10 @@
         };
         if (document.getElementById("AverageNum").textContent == ""){
             document.getElementById("AverageNum").textContent = "Just Try playing for more stats!"
-        }
+        };
+        if (document.getElementById("Best").textContent == ""){
+            document.getElementById("Best").textContent = "Just Try playing for more stats!"
+        };
     }
 
     function rand(){
@@ -167,7 +172,7 @@
                 document.getElementById("GuessesNum").textContent = "Guesses: 0";
                 document.getElementById("DebugNum").textContent = num;
                 document.getElementById("StartButton").textContent = "Submit Guess!"
-                document.getElementById("Status").textContent = "Hmm watcha gonna guess?!"
+                document.getElementById("Status").textContent = "Hmm watcha gonna guess " + UserName + "?!"
                 document.getElementById("GuessInput").hidden=false
             }
             else guess()
@@ -201,6 +206,7 @@
             running = 0
             if (best>guesses || best == 0){
                 best = guesses
+                document.getElementById("Best").textContent = "Your least amount of guesses was: "+best
                 SubmitScore(UserName, best)
             }
         };
