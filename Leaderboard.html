@@ -1,0 +1,36 @@
+<body>
+
+
+
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+    const supabaseUrl = "https://bxjhtqfioywimtpmqtmz.supabase.co";
+    const supabaseKey = "sb_publishable_sOPi3rbIzvOzhBiRDYH0gQ_cy7V24eh";
+
+    const db = window.supabase.createClient(
+        supabaseUrl,
+        supabaseKey
+    );
+
+    async function getdata() {
+        const { data, error } = await db
+            .from("Scores")
+            .select("*")
+            .order("score", { ascending: true})
+            .limit(10);
+
+        if (error){
+            console.error(error);
+            return;
+        }
+        console.log(data);
+    }
+   
+    getdata()
+
+</script>
