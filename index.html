@@ -91,7 +91,18 @@
    
     getdata()
 
-
+    async function SubmitScore(name, score) {
+        const { data, error } = await db
+            .from("Scores")
+            .insert({
+                name: name,
+                score: score
+            });
+        if (error) {
+            console.error(error)
+            return;
+        }
+    }
 
     let num = 0;
     let running = 0
@@ -99,10 +110,17 @@
     let totalguesses = 0
     let guesses = 0
     let best = 0
+    let UserName = ""
 
     function EnterName(){
-        let UserName = document.getElementById("EnterName").textContent
-        console.log(stat.textContent)
+        UserName = document.getElementById("EnterName").value
+        if (!UserName == ""){
+            document.getElementById("Status").textContent = "Hi " + UserName +"!!"
+            document.getElementById("SubmitName").hidden = true
+            document.getElementById("EnterName").hidden = true
+        } else{
+            document.getElementById("Status").textContent = "Username Invalid!!"
+        }
 
     }
 
@@ -141,18 +159,22 @@
     };
 
     function start(){
-        
-        if (!running){
-            guesses = 0
-            running = 1
-            rand();
-            document.getElementById("GuessesNum").textContent = "Guesses: 0";
-            document.getElementById("DebugNum").textContent = num;
-            document.getElementById("StartButton").textContent = "Submit Guess!"
-            document.getElementById("Status").textContent = "Hmm watcha gonna guess?!"
-            document.getElementById("GuessInput").hidden=false
+        if (!UserName == "") {
+            if (!running){
+                guesses = 0
+                running = 1
+                rand();
+                document.getElementById("GuessesNum").textContent = "Guesses: 0";
+                document.getElementById("DebugNum").textContent = num;
+                document.getElementById("StartButton").textContent = "Submit Guess!"
+                document.getElementById("Status").textContent = "Hmm watcha gonna guess?!"
+                document.getElementById("GuessInput").hidden=false
+            }
+            else guess()
+        } else {
+            document.getElementById("Status").textContent = "Username Invalid!!"
         }
-        else guess()
+
 
 
     }
@@ -179,6 +201,7 @@
             running = 0
             if (best>guesses || best == 0){
                 best = guesses
+                SubmitScore(UserName, best)
             }
         };
 
