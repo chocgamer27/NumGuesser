@@ -12,11 +12,17 @@
     font-size: xx-large;
     border-radius: 100px;
     font-family: cursive;">Click to start!</button>
+    
     <h1 id="DebugNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 23%; color: darkgrey;"; hidden="true"></h1>
+    
     <h1 id="GuessesNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 19%; color: darkgrey;"; hidden="true"></h1>
+    
     <h1 id="TotalGuessesNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 15%; color: darkgrey;"; hidden="true"></h1>
+    
     <h1 id="WinsNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 11%; color: darkgrey;"; hidden="true"></h1>
+    
     <h1 id="AverageNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 7%; color: darkgrey;"; hidden="true"></h1>
+    
     <textarea id="GuessInput" style="position:absolute;
     font-family: cursive;
     font-size: 700%;
@@ -47,6 +53,8 @@
     "></h1>
 
     <button id="ShowAns"; style="position:absolute; color: darkgrey; font-size: x-large; position: absolute; width: 8%; height: 12%; bottom: 1%; background-color: rgb(45, 90, 91); border-radius: 20px;" onclick=" Ans()">Number & stats</button>
+
+    <textarea id="EnterName" style="position: absolute; left: 30%; top: 88%; background-color: rgb(30, 29, 79); color: rgb(243, 177, 214); width: 25%; height: 10%; font-family: cursive; align-content: center; text-align: center; border-radius: 30px; font-size: 200%; resize: none;"; placeholder="Enter A Name"></textarea>
 
 </body>
 
@@ -123,7 +131,7 @@
         if (guessval==num){
             wins ++
             document.getElementById("WinsNum").textContent = "Wins: " + wins;
-            document.getElementById("Status").textContent = guessval + " Was Perfect! but it added " + guesses + " to your new total of " + totalguesses + "!!"
+            document.getElementById("Status").textContent = guessval + " Was Perfect!"
             document.getElementById("StartButton").textContent = "Click to start again!"
             document.getElementById("GuessInput").hidden=true
             document.getElementById("GuessInput").value = ""
