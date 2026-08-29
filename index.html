@@ -1,4 +1,6 @@
-<body>
+<body style="background-color: rgb(7, 50, 77);">
+
+    <header style="position: absolute; top: 1%; background-color: rgb(30, 29, 79); color: rgb(230, 147, 194); width: 98.5%; height: 7.5%; font-family: cursive; align-content: center; text-align: center; border-radius: 30px; font-size: 300%;">Guess a number between 0 and 1,000,000</header>
 
     <button id="StartButton"; 
     onclick=" start()"; 
@@ -10,10 +12,11 @@
     font-size: xx-large;
     border-radius: 100px;
     font-family: cursive;">Click to start!</button>
-    <h1 id="DebugNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 23%;"; hidden="true"></h1>
-    <h1 id="GuessesNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 19%;"; hidden="true"></h1>
-    <h1 id="TotalGuessesNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 15%;"; hidden="true"></h1>
-    <h1 id="WinsNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 11%;"; hidden="true"></h1>
+    <h1 id="DebugNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 23%; color: darkgrey;"; hidden="true"></h1>
+    <h1 id="GuessesNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 19%; color: darkgrey;"; hidden="true"></h1>
+    <h1 id="TotalGuessesNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 15%; color: darkgrey;"; hidden="true"></h1>
+    <h1 id="WinsNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 11%; color: darkgrey;"; hidden="true"></h1>
+    <h1 id="AverageNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 7%; color: darkgrey;"; hidden="true"></h1>
     <textarea id="GuessInput" style="position:absolute;
     font-family: cursive;
     font-size: 700%;
@@ -26,7 +29,8 @@
     border: 0;
     scrollbar-width: none;
     word-break: keep-all;
-    background-color: darkcyan;
+    color: darkgrey;
+    background-color: rgb(0, 31, 31);
     border-radius: 100px;"; 
     placeholder="Enter Number";
     hidden="true"></textarea>
@@ -38,7 +42,7 @@
     font-size: 450%;
     "></h1>
 
-    <button id="ShowAns"; style="position:absolute; font-size: x-large; position: absolute; width: 8%; height: 12%; bottom: 1%;" onclick=" Ans()">Number & stats</button>
+    <button id="ShowAns"; style="position:absolute; color: darkgrey; font-size: x-large; position: absolute; width: 8%; height: 12%; bottom: 1%; background-color: rgb(45, 90, 91); border-radius: 20px;" onclick=" Ans()">Number & stats</button>
 
 </body>
 
@@ -51,15 +55,18 @@
 
     function Ans(){
         if (document.getElementById("DebugNum").hidden == false){
+            document.getElementById("DebugNum").hidden = true;
             document.getElementById("GuessesNum").hidden = true;
             document.getElementById("TotalGuessesNum").hidden = true;
             document.getElementById("WinsNum").hidden = true;
+            document.getElementById("AverageNum").hidden = true;
         }
         else {
             document.getElementById("DebugNum").hidden = false;
             document.getElementById("GuessesNum").hidden = false;
             document.getElementById("TotalGuessesNum").hidden = false;
             document.getElementById("WinsNum").hidden = false;
+            document.getElementById("AverageNum").hidden = false;
         };
         if (document.getElementById("DebugNum").textContent == ""){
             document.getElementById("DebugNum").textContent = "Try starting a game for more stats!"
@@ -71,6 +78,9 @@
         if (document.getElementById("WinsNum").textContent == ""){
             document.getElementById("WinsNum").textContent = "Try Getting a number correct for more stats!"
         };
+        if (document.getElementById("AverageNum").textContent == ""){
+            document.getElementById("AverageNum").textContent = "Just Try playing for more stats!"
+        }
     }
 
     function rand(){
@@ -114,6 +124,10 @@
             document.getElementById("GuessInput").hidden=true
             document.getElementById("GuessInput").value = ""
             running = 0
+        };
+
+        if (wins != 0){
+            document.getElementById("AverageNum").textContent = "Average guesses per win: " + (totalguesses/wins)
         };
     }
         
