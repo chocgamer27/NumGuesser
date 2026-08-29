@@ -66,7 +66,12 @@
     let totalguesses = 0
     let guesses = 0
 
-    let stat = File.name("Stats.json")
+    fetch("Stats.json")
+        .then((res) => res.text())
+        .then((text)=>{
+            console.log(text)
+        })
+    
 
     function EnterName(){
         let UserName = document.getElementById("EnterName").textContent
