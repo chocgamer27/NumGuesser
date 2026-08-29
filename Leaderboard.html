@@ -28,17 +28,16 @@
             console.error(error);
             return;
         }
-        console.log(data);
 
         for (let i=0; data.length>i; i++){
             NewElement = document.createElement("h2")
             NewElement.textContent = (i+1) + ". " + data[i].name + " - " + data[i].score;
             NewElement.style = `position: absolute;
             left: auto; 
-            top: ${i*10}%; 
+            top: ${i*9}%; 
             background-color: 
-            rgb(67, 65, 178); 
-            color: rgb(203, 139, 175); 
+            rgb(18, 16, 158); 
+            color: rgb(240, 174, 211); 
             width: 98.5%; 
             height: 7%; 
             font-family: cursive; 

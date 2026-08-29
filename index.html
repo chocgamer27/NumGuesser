@@ -75,6 +75,20 @@
         supabaseKey
     );
 
+    async function Checkdata() {
+        const { data, error } = await db
+            .from("Scores")
+            .select("*")
+            .order("score", { ascending: true})
+            .limit(50);
+
+        if (error){
+            console.error(error);
+            return;
+        }
+        console.log(data);
+    }
+
     async function SubmitScore(name, score) {
         const { data, error } = await db
             .from("Scores")
