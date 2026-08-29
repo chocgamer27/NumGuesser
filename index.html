@@ -23,6 +23,9 @@
     
     <h1 id="AverageNum" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 7%; color: darkgrey;"; hidden="true"></h1>
     
+    <h1 id="best" style="position:absolute; font-size: 100%; position: absolute; width: 15%; height: 15%; bottom: 7%; color: darkgrey;"; hidden="true"></h1>
+    
+
     <textarea id="GuessInput" style="position:absolute;
     font-family: cursive;
     font-size: 700%;
@@ -59,19 +62,36 @@
 
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+    const supabaseUrl = "https://bxjhtqfioywimtpmqtmz.supabase.co";
+    const supabaseKey = "sb_publishable_sOPi3rbIzvOzhBiRDYH0gQ_cy7V24eh";
+
+    const supabase = window.supabase.createClient(
+        supabaseUrl,
+        supabaseKey
+    );
+
+    const data = supabase
+        .from("scores")
+        .select("*")
+        .order("score", { ascending: true})
+        .limit(10)
+    
+    console.log(data)
+    
+    getdata()
+
+
+
     let num = 0;
     let running = 0
     let wins = 0
     let totalguesses = 0
     let guesses = 0
-
-    fetch("Stats.json")
-        .then((res) => res.text())
-        .then((text)=>{
-            console.log(text)
-        })
-    
+    let best = 0
 
     function EnterName(){
         let UserName = document.getElementById("EnterName").textContent
@@ -150,6 +170,9 @@
             document.getElementById("GuessInput").hidden=true
             document.getElementById("GuessInput").value = ""
             running = 0
+            if (best>guesses || best == 0){
+                best = guesses
+            }
         };
 
         if (wins != 0){
